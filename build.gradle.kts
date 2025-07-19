@@ -102,12 +102,10 @@ intellijPlatform {
 
     pluginVerification {
         ides {
+            // This causes CI to fail, so we will only check the first and last IDE versions
 //            recommended()
             val productReleases = ProductReleasesValueSource().get()
-            val reducedProductReleases =
-                if (productReleases.size > 2) listOf(productReleases.first(), productReleases.last())
-                else productReleases
-            ides(reducedProductReleases)
+            ides(listOf(productReleases.first(), productReleases.last()))
         }
     }
 }

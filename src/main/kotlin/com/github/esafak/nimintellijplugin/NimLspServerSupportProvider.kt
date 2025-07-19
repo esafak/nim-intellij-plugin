@@ -7,7 +7,7 @@ import com.intellij.openapi.vfs.VirtualFile
 @Suppress("UnstableApiUsage")
 class NimLspServerSupportProvider : LspServerSupportProvider {
     override fun fileOpened(project: Project, file: VirtualFile, serverStarter: LspServerSupportProvider.LspServerStarter) {
-        if (file.extension == "nim") {
+        if (file.extension == "nim") {  // || file.extension == "nimble"
             serverStarter.ensureServerStarted(NimLspServerDescriptor(project))
         }
     }

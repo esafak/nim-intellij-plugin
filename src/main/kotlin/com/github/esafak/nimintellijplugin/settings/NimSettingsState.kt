@@ -12,6 +12,8 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 )
 class NimSettingsState : PersistentStateComponent<NimSettingsState> {
     var nimlangserverPath: String = ""
+    var nimPath: String = ""
+    var nimblePath: String = ""
 
     override fun getState(): NimSettingsState {
         return this
