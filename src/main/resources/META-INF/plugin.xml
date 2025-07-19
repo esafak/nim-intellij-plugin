@@ -1,15 +1,20 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.esafak.nimintellijplugin</id>
-    <name>nim-intellij-plugin</name>
+    <name>Nim Language</name>
     <vendor>esafak</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
-
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <depends>com.intellij.modules.ultimate</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.esafak.nimintellijplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.esafak.nimintellijplugin.startup.MyProjectActivity" />
+        <!--suppress PluginXmlValidity -->
+        <platform.lsp.serverSupportProvider implementation="com.github.esafak.nimintellijplugin.NimLspServerSupportProvider"/>
+        <applicationService serviceImplementation="com.github.esafak.nimintellijplugin.settings.NimSettingsState"/>
+        <projectService serviceImplementation="com.github.esafak.nimintellijplugin.services.MyProjectService"/>
+        <applicationConfigurable parentId="language" instance="com.github.esafak.nimintellijplugin.settings.NimSettingsConfigurable"
+                                 id="com.github.esafak.nimintellijplugin.settings.NimSettingsConfigurable" displayName="Nim"/>
+
+        <notificationGroup id="NimLangServer" displayType="BALLOON" isLogByDefault="false"/>
+
     </extensions>
 </idea-plugin>
